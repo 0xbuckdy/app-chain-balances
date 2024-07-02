@@ -87,9 +87,9 @@ const fetchBalances = async (
 
 /// print row for denom balance
 const getRow = (balance: Balance): string =>
-  `${balance.denom}, ${balance.origin}, ${
-    balance.balance
-  }, [${balance.path.join(", ")}]\n`;
+  `${balance.denom}, ${balance.origin}, ${balance.balance}, [${balance.path
+    .map((x) => Chains[x].name)
+    .join(", ")}]\n`;
 
 const main = async (account: string, dAsset: string, lAsset: string) => {
   const OUTPUT_FILE = "output";
@@ -103,7 +103,6 @@ const main = async (account: string, dAsset: string, lAsset: string) => {
   let lTotal = 0;
 
   for (const chainId of Object.keys(Chains)) {
-    const chain = Chains[chainId];
     const d = dBal[chainId];
     const l = lBal[chainId];
 
@@ -113,7 +112,7 @@ const main = async (account: string, dAsset: string, lAsset: string) => {
     balances[chainId] = [...(d || []), ...(l || [])];
 
     if (balances[chainId].length > 0) {
-      appendFileSync(OUTPUT_FILE, chain.name + ":\n");
+      appendFileSync(OUTPUT_FILE, Chains[chainId].name + ":\n");
       for (const balance of balances[chainId])
         appendFileSync(OUTPUT_FILE, getRow(balance));
     }
