@@ -1,0 +1,15 @@
+{
+  "name": "app-chain-balances",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@cosmjs/crypto": "^0.32.4",
+    "@cosmjs/encoding": "^0.32.4",
+    "@cosmjs/stargate": "^0.32.4",
+    "@cosmjs/cosmwasm-stargate": "^0.32.4",
+    "@types/node": "20.12.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  }
+}
